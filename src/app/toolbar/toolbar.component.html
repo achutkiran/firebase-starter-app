@@ -1,3 +1,14 @@
-<p>
-  toolbar works!
-</p>
+<mat-toolbar color="primary" class="toolbar">
+  <span class="title">
+    <mat-icon>chat_bubble_outline</mat-icon>
+    <span>Friendly Chat</span>
+  </span>
+  <span *ngIf="user; else showLogin" class="login">
+    <img [src]="user.photoURL" class="profilePic">
+    <span>{{user.displayName}}</span>
+    <button mat-button (click)="logout()">Sign-Out</button>
+  </span>
+  <ng-template #showLogin>
+    <button mat-button (click)="login()">Login</button>
+  </ng-template>
+</mat-toolbar>
