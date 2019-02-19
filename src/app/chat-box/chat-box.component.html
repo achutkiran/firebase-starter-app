@@ -1,0 +1,8 @@
+<mat-card>
+  <form class="chatForm" [formGroup]="chatForm">
+    <mat-form-field [floatLabel]="'never'" class="chatText" >
+      <input matInput placeholder="Message.." formControlName="chatText">
+    </mat-form-field>
+    <button mat-raised-button class="send" [disabled]="!chatForm.dirty">Send</button> 
+  </form>
+</mat-card>

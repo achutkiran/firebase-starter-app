@@ -1,0 +1,10 @@
+.chatForm{
+    display: flex;
+    align-items: center;
+}
+.chatText{
+    flex-grow: 1;
+}
+.send{
+    margin-left: 8px;
+}
