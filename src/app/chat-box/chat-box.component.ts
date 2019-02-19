@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { FirestoreService } from '../firestore.service';
 import { Observable } from 'rxjs';
 import { Chat } from '../common-types';
+import { CloudStorageService } from '../cloud-storage.service';
 
 @Component({
   selector: 'app-chat-box',
@@ -12,7 +13,7 @@ import { Chat } from '../common-types';
 export class ChatBoxComponent implements OnInit {
   chatData: Observable<Chat[]>
   chatForm: FormGroup
-  constructor(private firestoreService:FirestoreService) { }
+  constructor(private firestoreService:FirestoreService, private storageService:CloudStorageService) { }
 
   ngOnInit() {
     this.chatForm = new FormGroup({
@@ -30,7 +31,8 @@ export class ChatBoxComponent implements OnInit {
 
   fileUpload(e){
     if(e.target.files && e.target.files.length != 0){
-      console.log(e.target.files[0])
+      let file:File  = e.target.files[0]
+      this.storageService.uploadFile(file)
     }
   }
 

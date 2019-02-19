@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { User } from 'firebase/app';
 import {firestore} from "firebase/app"
@@ -26,6 +26,22 @@ export class FirestoreService {
     })
     .catch(error => {
       console.error('Error writing new message to Firebase database', error)
+    })
+  }
+
+  createPlaceHolderforImage() {
+    return this.afs.collection('messages').add({
+      name: this.user.displayName,
+      imageUrl: "",
+      profilePicUrl: this.user.photoURL,
+      timestamp: firestore.FieldValue.serverTimestamp()
+    })
+  }
+
+  updateImageUrl(messageRef:DocumentReference,url:string,fullPath:string){
+    messageRef.update({
+      imageUrl: url,
+      storageUri: fullPath
     })
   }
 
