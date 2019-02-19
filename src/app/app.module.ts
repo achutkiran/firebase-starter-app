@@ -10,6 +10,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule , FirestoreSettingsToken } from '@angular/fire/firestore'; 
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 // Angular Material imports
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
@@ -26,6 +27,7 @@ import { AuthService } from './auth.service';
 import { FirestoreService } from './firestore.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
+import { CloudStorageService } from './cloud-storage.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { ChatBoxComponent } from './chat-box/chat-box.component';
     AppRoutingModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     NoopAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
@@ -52,6 +55,7 @@ import { ChatBoxComponent } from './chat-box/chat-box.component';
   providers: [
     AuthService, 
     FirestoreService,
+    CloudStorageService,
     { provide: FirestoreSettingsToken, useValue: {}} //in future versions of firesstore don't use this
   ],
   bootstrap: [AppComponent]
