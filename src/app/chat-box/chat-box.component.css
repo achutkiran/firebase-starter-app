@@ -32,8 +32,13 @@
 .card{
     display:flex;
     flex-direction: column-reverse;
-    height: 615px;
+    min-height: 615px;
     width: 520px;
     margin-left: 20px;
     margin-top: 16px;
+}
+
+.imageChat{
+    max-height: 150px;
+    max-width: 150px;
 }

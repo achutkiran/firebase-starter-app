@@ -13,14 +13,14 @@ import { AngularFirestoreModule , FirestoreSettingsToken } from '@angular/fire/f
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
 // Angular Material imports
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 // Services
 import { AuthService } from './auth.service';
@@ -41,7 +41,7 @@ import { CloudStorageService } from './cloud-storage.service';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
     ReactiveFormsModule,
@@ -50,7 +50,8 @@ import { CloudStorageService } from './cloud-storage.service';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthService, 

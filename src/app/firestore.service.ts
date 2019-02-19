@@ -32,7 +32,7 @@ export class FirestoreService {
   createPlaceHolderforImage() {
     return this.afs.collection('messages').add({
       name: this.user.displayName,
-      imageUrl: "",
+      imageUrl: "UPLOADING",
       profilePicUrl: this.user.photoURL,
       timestamp: firestore.FieldValue.serverTimestamp()
     })

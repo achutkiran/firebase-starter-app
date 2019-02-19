@@ -12,8 +12,10 @@
   <div *ngFor="let chat of chatData | async" class="chatContainer">
     <img [src]="chat.profilePicUrl" class="profilePic">
     <span class="chat">
+      <mat-spinner *ngIf="chat.imageUrl == 'UPLOADING'"></mat-spinner>
       <div>{{chat.text}}</div>
-      <span class="userName">{{chat.name}}</span>
+      <img [src]="chat.imageUrl" *ngIf="chat.imageUrl && chat.imageUrl != 'UPLOADING'" class="imageChat">
+      <div class="userName">{{chat.name}}</div>
     </span>
   </div>
 
