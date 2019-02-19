@@ -28,4 +28,10 @@ export class ChatBoxComponent implements OnInit {
     this.firestoreService.addMessage(message)
   }
 
+  fileUpload(e){
+    if(e.target.files && e.target.files.length != 0){
+      console.log(e.target.files[0])
+    }
+  }
+
 }

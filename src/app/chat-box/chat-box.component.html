@@ -4,6 +4,10 @@
       <input matInput placeholder="Message.." formControlName="chatText">
     </mat-form-field>
     <button mat-raised-button class="send" [disabled]="!chatForm.get('chatText').value" type="submit">Send</button> 
+    <button mat-icon-button type="button" (click)="fileInput.click()">
+      <mat-icon>attach_file</mat-icon>
+      <input type="file" #fileInput [hidden]="true" accept="image/*" (change)="fileUpload($event)">
+    </button>
   </form>
   <div *ngFor="let chat of chatData | async" class="chatContainer">
     <img [src]="chat.profilePicUrl" class="profilePic">
