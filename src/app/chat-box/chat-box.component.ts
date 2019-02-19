@@ -24,6 +24,7 @@ export class ChatBoxComponent implements OnInit {
 
   saveChat() {
     let message:string = this.chatForm.get('chatText').value
+    this.chatForm.get('chatText').setValue('')
     this.firestoreService.addMessage(message)
   }
 

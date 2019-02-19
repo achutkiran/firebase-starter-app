@@ -8,9 +8,9 @@
   </div>
 
   <form class="chatForm" [formGroup]="chatForm" (ngSubmit)="saveChat()">
-    <mat-form-field [floatLabel]="'never'" class="chatText" >
+    <mat-form-field class="chatText" >
       <input matInput placeholder="Message.." formControlName="chatText">
     </mat-form-field>
-    <button mat-raised-button class="send" [disabled]="!chatForm.dirty" type="submit">Send</button> 
+    <button mat-raised-button class="send" [disabled]="!chatForm.get('chatText').value" type="submit">Send</button> 
   </form>
 </mat-card>
