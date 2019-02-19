@@ -31,8 +31,7 @@
 
 .card{
     display:flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: column-reverse;
     height: 615px;
     width: 520px;
     margin-left: 20px;

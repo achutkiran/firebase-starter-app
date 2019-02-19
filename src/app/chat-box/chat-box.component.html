@@ -1,4 +1,10 @@
 <mat-card class="card">
+  <form class="chatForm" [formGroup]="chatForm" (ngSubmit)="saveChat()">
+    <mat-form-field class="chatText" >
+      <input matInput placeholder="Message.." formControlName="chatText">
+    </mat-form-field>
+    <button mat-raised-button class="send" [disabled]="!chatForm.get('chatText').value" type="submit">Send</button> 
+  </form>
   <div *ngFor="let chat of chatData | async" class="chatContainer">
     <img [src]="chat.profilePicUrl" class="profilePic">
     <span class="chat">
@@ -7,10 +13,4 @@
     </span>
   </div>
 
-  <form class="chatForm" [formGroup]="chatForm" (ngSubmit)="saveChat()">
-    <mat-form-field class="chatText" >
-      <input matInput placeholder="Message.." formControlName="chatText">
-    </mat-form-field>
-    <button mat-raised-button class="send" [disabled]="!chatForm.get('chatText').value" type="submit">Send</button> 
-  </form>
 </mat-card>
