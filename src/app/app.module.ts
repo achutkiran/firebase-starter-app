@@ -9,6 +9,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 // Angular firebase imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule , FirestoreSettingsToken } from '@angular/fire/firestore'; 
 
 // Angular Material imports
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
@@ -22,6 +23,7 @@ import {MatCardModule} from '@angular/material/card';
 
 // Services
 import { AuthService } from './auth.service';
+import { FirestoreService } from './firestore.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 
@@ -35,6 +37,7 @@ import { ChatBoxComponent } from './chat-box/chat-box.component';
     BrowserModule,
     AppRoutingModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
     NoopAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
@@ -46,7 +49,11 @@ import { ChatBoxComponent } from './chat-box/chat-box.component';
     MatFormFieldModule,
     MatCardModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService, 
+    FirestoreService,
+    { provide: FirestoreSettingsToken, useValue: {}} //in future versions of firesstore don't use this
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

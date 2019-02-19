@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { FirestoreService } from '../firestore.service';
+import { Observable } from 'rxjs';
+import { Chat } from '../common-types';
 
 @Component({
   selector: 'app-chat-box',
@@ -7,14 +10,21 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./chat-box.component.css']
 })
 export class ChatBoxComponent implements OnInit {
-
+  chatData: Observable<Chat[]>
   chatForm: FormGroup
-  constructor() { }
+  constructor(private firestoreService:FirestoreService) { }
 
   ngOnInit() {
     this.chatForm = new FormGroup({
       chatText: new FormControl()
     })
+    this.chatData = this.firestoreService.fetchMessages()
+  }
+
+
+  saveChat() {
+    let message:string = this.chatForm.get('chatText').value
+    this.firestoreService.addMessage(message)
   }
 
 }

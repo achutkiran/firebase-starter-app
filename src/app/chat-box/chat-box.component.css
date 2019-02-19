@@ -8,3 +8,33 @@
 .send{
     margin-left: 8px;
 }
+.profilePic{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.chat{
+    padding-left: 8px;
+}
+
+.userName{
+    color: rgba(0,0,0,0.54);
+    font-size: 14px;
+}
+
+.chatContainer{
+    display:flex;
+    padding-bottom: 12px;
+
+}
+
+.card{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 615px;
+    width: 520px;
+    margin-left: 20px;
+    margin-top: 16px;
+}
