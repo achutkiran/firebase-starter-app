@@ -58,7 +58,7 @@ function cleanupTokens(response:admin.messaging.MessagingDevicesResponse,tokens:
         if (error) {
             console.error('Failure sending notification to', tokens[index],error);
             if (error.code == 'messaging/invalid-registration-token' ||
-                error.code == 'messaging/registration-token-not-registereed') {
+                error.code == 'messaging/registration-token-not-registered') {
                 const deleteTask = admin.firestore().collection('fcmTokens').doc(tokens[index]).delete();
                 tokensDelete.push(deleteTask);
             }
