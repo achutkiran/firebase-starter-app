@@ -1,6 +1,6 @@
 # AngularFirebase
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
+This is a basic firebase angular app using firestore as realtimedb and cloud functions as server
 
 ## Development server
 
