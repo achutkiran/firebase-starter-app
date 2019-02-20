@@ -21,7 +21,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "firebase-messaging-sw.js"
+              "src/firebase-messaging-sw.js"
             ],
             "styles": [
               "src/styles.css"

@@ -3,25 +3,24 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { User } from 'firebase/app';
 import {firestore} from "firebase/app"
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Chat } from './common-types';
 
 @Injectable()
 export class FirestoreService {
-  user:User;
-  constructor(private afs: AngularFirestore, private authService:AuthService) { 
-    this.authService.user()
-      .subscribe(user =>{
-        this.user = user
-      })
+  userBehaviourSubject: BehaviorSubject<User> = new BehaviorSubject(undefined);
 
+  constructor(private afs: AngularFirestore, private authService:AuthService) { 
+    this.authService.user().subscribe((user) => {
+      this.userBehaviourSubject.next(user);
+    });
   }
 
   addMessage(messageText:string){
     this.afs.collection('messages').add({
-      name: this.user.displayName,
+      name: this.userBehaviourSubject.value.displayName,
       text: messageText,
-      profilePicUrl: this.user.photoURL,
+      profilePicUrl: this.userBehaviourSubject.value.photoURL,
       timestamp: firestore.FieldValue.serverTimestamp()
     })
     .catch(error => {
@@ -31,9 +30,9 @@ export class FirestoreService {
 
   createPlaceHolderforImage() {
     return this.afs.collection('messages').add({
-      name: this.user.displayName,
+      name: this.userBehaviourSubject.value.displayName,
       imageUrl: "UPLOADING",
-      profilePicUrl: this.user.photoURL,
+      profilePicUrl: this.userBehaviourSubject.value.photoURL,
       timestamp: firestore.FieldValue.serverTimestamp()
     })
   }
@@ -43,6 +42,16 @@ export class FirestoreService {
       imageUrl: url,
       storageUri: fullPath
     })
+  }
+
+  addToken(token:string){
+    this.userBehaviourSubject
+      .subscribe(user =>{
+        if(user){
+          this.afs.collection('fcmTokens').doc(token)
+          .set({uid:user.uid})
+        }
+      })
   }
 
   fetchMessages():Observable<Chat[]>{
